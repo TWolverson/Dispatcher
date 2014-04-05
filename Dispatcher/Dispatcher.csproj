@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsoleHandler.cs" />
+    <Compile Include="LogMessage.cs" />
     <Compile Include="WorkMessage.cs" />
     <Compile Include="Dispatcher.cs" />
     <Compile Include="ExceptionMessage.cs" />

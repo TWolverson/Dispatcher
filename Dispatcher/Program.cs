@@ -10,13 +10,20 @@ namespace Dispatcher
     {
         static void Main(string[] args)
         {
+            //Comments for the benefit of people trying to understand the pattern:
+
+            // This is basically the bare-minimum setup to allow actors to publish and subscribe
             var dispatcher = new Dispatcher();
             var publisher = new Publisher(dispatcher);
             var boss = new Boss(publisher);
 
-            dispatcher.Subscribe<WorkMessage>(new Worker());
+            // Set up what listens to what
+            dispatcher.Subscribe<WorkMessage>(new Worker(publisher));
+            dispatcher.Subscribe<LogMessage>(new ConsoleHandler());
 
+            // Make the pipeline do something by posting a message
             boss.DoStuff();
+
             Console.Read();
         }
     }
@@ -32,7 +39,10 @@ namespace Dispatcher
 
         public void DoStuff()
         {
-            _publisher.Publish(new WorkMessage() { Work = "Do some damn work, Johan" });
+            var work = new WorkMessage() { Work = "Do some damn work, Johan" };      
+            _publisher.Publish(new LogMessage( work.Work ));
+            _publisher.Publish(work);
+
         }
     }
 }
