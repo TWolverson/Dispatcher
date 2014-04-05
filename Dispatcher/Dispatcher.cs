@@ -7,25 +7,35 @@ using System.Threading.Tasks;
 
 namespace Dispatcher
 {
-    public class Dispatcher
+    public class Dispatcher : IHandle<Message>
     {
-        private readonly ConcurrentDictionary<Type, List<IHandle<Message>>> _subscriptions;
+        private readonly ConcurrentDictionary<Type, List<IHandle>> _subscriptions;
 
-        public void Subscribe<TMessage>(IHandle<Message> handler)
+        public void Subscribe<TMessage>(IHandle<TMessage> handler) where TMessage : Message
         {
-            _subscriptions.TryAdd(typeof(TMessage), new List<IHandle<Message>>());
-            _subscriptions[typeof(TMessage)].Add(handler);
+            _subscriptions.TryAdd(typeof(TMessage), new List<IHandle>());
+            _subscriptions[typeof(TMessage)].Add(new InnerHandler<TMessage>(handler));
         }
 
-        public void Publish<TMessage>(TMessage message)
+        public Dispatcher()
         {
-            var type = typeof(TMessage);
+            _subscriptions = new ConcurrentDictionary<Type, List<IHandle>>();
+        }
+
+        public void Handle(Message message)
+        {
+            var type = message.GetType();
             while (type != typeof(object))
             {
-                foreach (var handler in _subscriptions[type])
+                List<IHandle> subscriptions;
+                if (_subscriptions.TryGetValue(type, out subscriptions))
                 {
-                    handler.Handle(message as Message);
+                    foreach (var handler in subscriptions)
+                    {
+                        handler.Handle(message as Message);
+                    }
                 }
+                type = type.BaseType;
             }
         }
     }

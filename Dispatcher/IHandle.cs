@@ -9,4 +9,9 @@ namespace Dispatcher
     {
         void Handle(TMessage message);
     }
+
+    public interface IHandle
+    {
+        void Handle(Message message);
+    }
 }

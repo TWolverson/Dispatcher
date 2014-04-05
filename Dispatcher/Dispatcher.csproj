@@ -41,11 +41,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="WorkMessage.cs" />
     <Compile Include="Dispatcher.cs" />
+    <Compile Include="ExceptionMessage.cs" />
     <Compile Include="IHandle.cs" />
+    <Compile Include="InnerHandler.cs" />
+    <Compile Include="IPublisher.cs" />
     <Compile Include="Message.cs" />
+    <Compile Include="NarrowingHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Publisher.cs" />
+    <Compile Include="QueuedHandler.cs" />
+    <Compile Include="QueueFullException.cs" />
+    <Compile Include="WideningHandler.cs" />
+    <Compile Include="Worker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
