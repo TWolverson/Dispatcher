@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F1FD71B3-640D-4080-8447-95455265899A}</ProjectGuid>
+    <ProjectGuid>{5116E2CA-260F-4091-B510-D84105C33840}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Dispatcher</RootNamespace>
-    <AssemblyName>Dispatcher</AssemblyName>
+    <RootNamespace>Printers</RootNamespace>
+    <AssemblyName>Printers</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -41,37 +41,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bus.cs" />
-    <Compile Include="ConsoleHandler.cs" />
-    <Compile Include="FutureMessage.cs" />
-    <Compile Include="IBus.cs" />
-    <Compile Include="LogMessage.cs" />
-    <Compile Include="RetryHandler.cs" />
-    <Compile Include="RetryLimitExceededException.cs" />
-    <Compile Include="RetryManager.cs" />
-    <Compile Include="RetryMessage.cs" />
-    <Compile Include="RoundRobinLoadBalancer.cs" />
-    <Compile Include="SuccessMessage.cs" />
-    <Compile Include="WorkMessage.cs" />
-    <Compile Include="Dispatcher.cs" />
-    <Compile Include="ExceptionMessage.cs" />
-    <Compile Include="IHandle.cs" />
-    <Compile Include="InnerHandler.cs" />
-    <Compile Include="IPublisher.cs" />
-    <Compile Include="Message.cs" />
-    <Compile Include="NarrowingHandler.cs" />
+    <Compile Include="Employee.cs" />
+    <Compile Include="LogConverter.cs" />
+    <Compile Include="OutOfPaper.cs" />
+    <Compile Include="PagePrinted.cs" />
+    <Compile Include="Printer.cs" />
+    <Compile Include="PrintJob.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Publisher.cs" />
-    <Compile Include="QueuedHandler.cs" />
-    <Compile Include="QueueFullException.cs" />
-    <Compile Include="WideningHandler.cs" />
-    <Compile Include="Worker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Dispatcher\Dispatcher.csproj">
+      <Project>{f1fd71b3-640d-4080-8447-95455265899a}</Project>
+      <Name>Dispatcher</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

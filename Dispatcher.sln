@@ -5,7 +5,9 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dispatcher", "Dispatcher\Dispatcher.csproj", "{F1FD71B3-640D-4080-8447-95455265899A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dispatcher.Tests", "Dispatcher.Tests\Dispatcher.Tests.csproj", "{1515F4B8-EAB2-4F52-AC6C-A5323EC005BB}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{4CF4B261-5F98-42F3-BAD1-620B7BD457B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Printers", "Printers\Printers.csproj", "{5116E2CA-260F-4091-B510-D84105C33840}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,12 +19,15 @@ Global
 		{F1FD71B3-640D-4080-8447-95455265899A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1FD71B3-640D-4080-8447-95455265899A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1FD71B3-640D-4080-8447-95455265899A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1515F4B8-EAB2-4F52-AC6C-A5323EC005BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1515F4B8-EAB2-4F52-AC6C-A5323EC005BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1515F4B8-EAB2-4F52-AC6C-A5323EC005BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1515F4B8-EAB2-4F52-AC6C-A5323EC005BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5116E2CA-260F-4091-B510-D84105C33840}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5116E2CA-260F-4091-B510-D84105C33840}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5116E2CA-260F-4091-B510-D84105C33840}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5116E2CA-260F-4091-B510-D84105C33840}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5116E2CA-260F-4091-B510-D84105C33840} = {4CF4B261-5F98-42F3-BAD1-620B7BD457B0}
 	EndGlobalSection
 EndGlobal

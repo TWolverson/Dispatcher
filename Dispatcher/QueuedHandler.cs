@@ -24,7 +24,7 @@ namespace Dispatcher
             _queue.Enqueue(message);
         }
 
-        public QueuedHandler(IHandle<Message> next, IHandle<Message> bus)
+        public QueuedHandler(IHandle<Message> next, IBus bus)
         {
             _queue = new ConcurrentQueue<Message>();
             _next = next;
@@ -35,7 +35,7 @@ namespace Dispatcher
             MaxQueueLength = int.MaxValue;
         }
 
-        private IHandle<Message> _bus;
+        private IBus _bus;
 
         public void Process()
         {
@@ -49,19 +49,14 @@ namespace Dispatcher
 
                     try
                     {
-                        //Console.WriteLine(message.GetType() + " Queue: " + Name);
                         _next.Handle(message);
                     }
                     catch (Exception e)
                     {
-                        //swallow
-                        _bus.Handle(new ExceptionMessage(e));
-                        // _bus.Handle(new FutureMessage(message, DateTimeOffset.Now + TimeSpan.FromMilliseconds(500)));
+                        _bus.Publish(new ExceptionMessage(e));
+                        // let the retry handler catch exceptions and schedule retries
+                        //_bus.Publish(new FutureMessage(message, DateTimeOffset.Now + TimeSpan.FromMilliseconds(500)));
                     }
-
-
-                    //if (_stopwatch.ElapsedMilliseconds > 200)
-                    //    Console.WriteLine("This thing is slow: " + message.GetType() + " Queue: " + Name);
                 }
             }
         }
