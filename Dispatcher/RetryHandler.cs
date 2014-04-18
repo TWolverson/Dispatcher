@@ -28,7 +28,6 @@ namespace Dispatcher
             }
             catch (Exception e)
             {
-                //swallow
                 _bus.Publish(new ExceptionMessage(e));
                 _bus.Publish(new RetryMessage(message));
             }

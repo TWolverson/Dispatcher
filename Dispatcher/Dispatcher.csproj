@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{F1FD71B3-640D-4080-8447-95455265899A}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Dispatcher</RootNamespace>
     <AssemblyName>Dispatcher</AssemblyName>
@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -52,7 +55,6 @@
     <Compile Include="RetryMessage.cs" />
     <Compile Include="RoundRobinLoadBalancer.cs" />
     <Compile Include="SuccessMessage.cs" />
-    <Compile Include="WorkMessage.cs" />
     <Compile Include="Dispatcher.cs" />
     <Compile Include="ExceptionMessage.cs" />
     <Compile Include="IHandle.cs" />
@@ -60,16 +62,12 @@
     <Compile Include="IPublisher.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="NarrowingHandler.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Publisher.cs" />
     <Compile Include="QueuedHandler.cs" />
     <Compile Include="QueueFullException.cs" />
+    <Compile Include="TimerService.cs" />
     <Compile Include="WideningHandler.cs" />
-    <Compile Include="Worker.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

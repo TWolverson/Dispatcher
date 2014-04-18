@@ -14,9 +14,9 @@ namespace Dispatcher
 
         private ConcurrentDictionary<Message, int> _retries;
 
-        private IHandle<Message> _bus;
+        private IBus _bus;
 
-        public RetryManager(IHandle<Message> bus)
+        public RetryManager(IBus bus)
         {
             _retries = new ConcurrentDictionary<Message, int>();
             _bus = bus;
@@ -31,11 +31,11 @@ namespace Dispatcher
             {
                 if (numRetriesAttempted > maxRetries)
                 {
-                    _bus.Handle(new ExceptionMessage(new RetryLimitExceededException(message.Message)));
+                    _bus.Publish(new ExceptionMessage(new RetryLimitExceededException(message.Message)));
                     _retries.TryRemove(message.Message, out numRetriesAttempted);
                     return;
                 }
-                _bus.Handle(new FutureMessage(message.Message, DateTimeOffset.UtcNow + TimeSpan.FromMilliseconds(50)));
+                _bus.Publish(new FutureMessage(message.Message, DateTimeOffset.UtcNow + TimeSpan.FromMilliseconds(50)));
             }
         }
 

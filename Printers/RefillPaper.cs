@@ -6,8 +6,10 @@ using System.Text;
 
 namespace Printers
 {
-    public class OutOfPaper : Message
+    public class RefillPaper : Message
     {
+        public int Sheets { get; set; }
+
         public int PrinterId { get; set; }
     }
 }

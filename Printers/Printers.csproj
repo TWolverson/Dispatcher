@@ -44,11 +44,14 @@
     <Compile Include="Employee.cs" />
     <Compile Include="LogConverter.cs" />
     <Compile Include="OutOfPaper.cs" />
+    <Compile Include="OutOfPaperException.cs" />
     <Compile Include="PagePrinted.cs" />
+    <Compile Include="Porter.cs" />
     <Compile Include="Printer.cs" />
     <Compile Include="PrintJob.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RefillPaper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

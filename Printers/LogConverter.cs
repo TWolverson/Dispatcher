@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Printers
 {
-    public class LogConverter : IHandle<PrintJob>, IHandle<OutOfPaper>, IHandle<PagePrinted>
+    public class LogConverter : IHandle<PrintJob>, IHandle<OutOfPaper>, IHandle<PagePrinted>, IHandle<RetryMessage>, IHandle<ExceptionMessage>
     {
         private IBus _bus;
         public LogConverter(IBus bus)
@@ -28,6 +28,16 @@ namespace Printers
         public void Handle(OutOfPaper message)
         {
             _bus.Publish(new LogMessage("Oh noes; out of paper!"));
+        }
+
+        public void Handle(RetryMessage message)
+        {
+            _bus.Publish(new LogMessage("Retrying: " + message.Message.GetType().ToString()));
+        }
+
+        public void Handle(ExceptionMessage message)
+        {
+            _bus.Publish(new LogMessage("An exception was thrown: " + message.Exception.Message));
         }
     }
 }
